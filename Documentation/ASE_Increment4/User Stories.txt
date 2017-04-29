@@ -1,0 +1,6 @@
+User Stories:
+
+1.  User can enter the Text/Tweet to get the Sentiment of text
+2. User can click on button to send the entered text to model
+3. User can view the Sentiment of his/her text
+4. User can navigated to initial screen to test the Sentiment of any other text
