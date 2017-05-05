@@ -1,0 +1,69 @@
+var myapp = angular.module('BestBuddy', []);
+var result={'body': []};
+myapp.run(function ($http) {
+    // Sends this header with any AJAX request
+    $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+    // Send this header only in post requests. Specifies you are sending a JSON object
+    $http.defaults.headers.post['dataType'] = 'json'
+});
+myapp.controller('MongoRestController', function ($scope, $http) {
+    $scope.insertData = function () {
+        console.log($scope.formData.text);
+        var dataParams = {
+            'text': $scope.text
+        };
+        var config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        }
+        var req = $http.post('http://127.0.0.1:8081/register', $scope.formData);
+        req.success(function (data, status, headers, config) {
+            $scope.message = data;
+            console.log(data);
+        });
+        req.error(function (data, status, headers, config) {
+            alert("failure message: " + JSON.stringify({data: data}));
+        });
+    };
+    $scope.getData=function () {
+        var req = $http.post('http://127.0.0.1:8081/get-data', $scope.formData);
+        var dataParams = {
+            'Text': $scope.text,
+            'Sentiment': $scope.Sentiment
+        };
+        req.success(function(data, status, headers, config) {
+            var col = [];
+            for (var i = 0; i < data.length; i++) {
+                for (var key in data[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+            var table = document.createElement("table");
+            table.border = "1";
+            var tr = table.insertRow(-1);
+            for (var i = 1; i < col.length; i++) {
+                var th = document.createElement("th");
+                th.innerHTML = col[i];
+                tr.appendChild(th);
+            }
+            for (var i = 0; i < data.length; i++) {
+                tr = table.insertRow(-1);
+                for (var j = 1; j < col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = data[i][col[j]];
+                }
+            }
+            var divContainer = document.getElementById("container");
+            divContainer.innerHTML = "";
+            divContainer.appendChild(table);
+        });
+
+        req.error(function(data, status, headers, config) {
+            alert( "failure message: " + JSON.stringify({data: data}));
+        });
+    };
+});
+

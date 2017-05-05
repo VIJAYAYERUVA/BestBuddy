@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Best Buddy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id"
+          content="116369568855-igv80pnh3g1slkujciid5i65gr4a001r.apps.googleusercontent.com">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <style>
+    h1 {
+        display: block;
+        font-size: 3em;
+        margin-top: 0.67em;
+        margin-bottom: 0.67em;
+        margin-left: 0;
+        margin-right: 0;
+        font-weight: bold;
+        color: blue;
+    }
+    input.button-add {
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #000000;
+    background: #0000FF url(images/t.jpg);
+    color: blue;
+    }
+    </style>
+
+</head>
+<body align="Center">
+<br>
+<br><br><br><br><br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pr-wrap">
+                <div class="pass-reset">
+                </div>
+            </div>
+            <div class="wrap">
+
+                <form class="login" name="lform">
+                    <h1> Best Buddy </h1><br><br>
+                    <input font-size="2em" type="text" id="username" placeholder="Twitter Username"/><br><br>
+                    <input type="password" id="pwd" placeholder="Twitter Password"/><br><br>
+                    <input type="button" background-image = "/images/t.png" value="Twitter Log In" onclick="Validate_Login()"
+                           class="button-add"/><br><br><br>
+                    <script>
+                        function Validate_Login() {
+                            var password=document.getElementById('pwd').value;
+                            var userid=document.getElementById('username').value;
+                            if((userid=="YVijayaK") && (password=="Vijaya")) {
+                                window.location = "index.html";
+                            }
+                            else {
+                                alert("Incorrect login details,Login Failed");
+                            }    }
+
+                    </script>
+                    <div class="remember-forgot">
+                        <div class="row">
+                            <p class="form-title1">Not yet registered?</p>
+                        </div>
+                    </div>
+                    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
