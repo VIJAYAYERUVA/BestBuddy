@@ -14,7 +14,7 @@
 
 Trained the model with Movie Review Data
 
-Train: rain.py
+Train: Train.py
 
 ## Evaluating
 
